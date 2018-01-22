@@ -7,15 +7,31 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B697242692B4EA7A0D3B8B47 /* libPods-GavelIt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 179D53E7B33986A74D5F533D /* libPods-GavelIt.a */; };
 		FC58F9C92015BA2300018C4E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FC58F9C82015BA2300018C4E /* AppDelegate.m */; };
 		FC58F9CC2015BA2300018C4E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC58F9CB2015BA2300018C4E /* ViewController.m */; };
 		FC58F9CF2015BA2300018C4E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC58F9CD2015BA2300018C4E /* Main.storyboard */; };
 		FC58F9D12015BA2300018C4E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC58F9D02015BA2300018C4E /* Assets.xcassets */; };
 		FC58F9D42015BA2300018C4E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC58F9D22015BA2300018C4E /* LaunchScreen.storyboard */; };
 		FC58F9D72015BA2300018C4E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FC58F9D62015BA2300018C4E /* main.m */; };
+		FC58F9E02015BD3700018C4E /* GIUserData.m in Sources */ = {isa = PBXBuildFile; fileRef = FC58F9DF2015BD3600018C4E /* GIUserData.m */; };
+		FC58F9F62015BD4400018C4E /* GIAnswerView.m in Sources */ = {isa = PBXBuildFile; fileRef = FC58F9E12015BD4000018C4E /* GIAnswerView.m */; };
+		FC58F9F72015BD4400018C4E /* GIMakeQuestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC58F9E32015BD4100018C4E /* GIMakeQuestionViewController.m */; };
+		FC58F9F82015BD4400018C4E /* GIAnswersView.m in Sources */ = {isa = PBXBuildFile; fileRef = FC58F9E52015BD4100018C4E /* GIAnswersView.m */; };
+		FC58F9F92015BD4400018C4E /* GIFillInView.m in Sources */ = {isa = PBXBuildFile; fileRef = FC58F9E72015BD4100018C4E /* GIFillInView.m */; };
+		FC58F9FA2015BD4400018C4E /* GIMakeFinalAnswerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC58F9E82015BD4100018C4E /* GIMakeFinalAnswerViewController.m */; };
+		FC58F9FB2015BD4400018C4E /* GIQuestionView.m in Sources */ = {isa = PBXBuildFile; fileRef = FC58F9EA2015BD4100018C4E /* GIQuestionView.m */; };
+		FC58F9FC2015BD4400018C4E /* GIQuestionAnswerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FC58F9EB2015BD4200018C4E /* GIQuestionAnswerModel.m */; };
+		FC58F9FD2015BD4400018C4E /* GIMakeAnswerOneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC58F9EE2015BD4200018C4E /* GIMakeAnswerOneViewController.m */; };
+		FC58F9FE2015BD4400018C4E /* GIQuestionController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC58F9F22015BD4300018C4E /* GIQuestionController.m */; };
+		FC58F9FF2015BD4400018C4E /* GIResultsView.m in Sources */ = {isa = PBXBuildFile; fileRef = FC58F9F32015BD4300018C4E /* GIResultsView.m */; };
+		FCC89CD22015C0CB0040DF02 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FCC89CD12015C0CA0040DF02 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		179D53E7B33986A74D5F533D /* libPods-GavelIt.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GavelIt.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		322B1425410968B4A4D8E76D /* Pods-GavelIt.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GavelIt.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GavelIt/Pods-GavelIt.debug.xcconfig"; sourceTree = "<group>"; };
+		DE403A9FF67C6F4FF5D42A3C /* Pods-GavelIt.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GavelIt.release.xcconfig"; path = "Pods/Target Support Files/Pods-GavelIt/Pods-GavelIt.release.xcconfig"; sourceTree = "<group>"; };
 		FC58F9C42015BA2300018C4E /* GavelIt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GavelIt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC58F9C72015BA2300018C4E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		FC58F9C82015BA2300018C4E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -26,6 +42,29 @@
 		FC58F9D32015BA2300018C4E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FC58F9D52015BA2300018C4E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FC58F9D62015BA2300018C4E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		FC58F9DF2015BD3600018C4E /* GIUserData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GIUserData.m; sourceTree = "<group>"; };
+		FC58F9E12015BD4000018C4E /* GIAnswerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GIAnswerView.m; sourceTree = "<group>"; };
+		FC58F9E22015BD4000018C4E /* GIMakeQuestionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GIMakeQuestionViewController.h; sourceTree = "<group>"; };
+		FC58F9E32015BD4100018C4E /* GIMakeQuestionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GIMakeQuestionViewController.m; sourceTree = "<group>"; };
+		FC58F9E42015BD4100018C4E /* GIQuestionAnswerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GIQuestionAnswerModel.h; sourceTree = "<group>"; };
+		FC58F9E52015BD4100018C4E /* GIAnswersView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GIAnswersView.m; sourceTree = "<group>"; };
+		FC58F9E62015BD4100018C4E /* GIMakeAnswerOneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GIMakeAnswerOneViewController.h; sourceTree = "<group>"; };
+		FC58F9E72015BD4100018C4E /* GIFillInView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GIFillInView.m; sourceTree = "<group>"; };
+		FC58F9E82015BD4100018C4E /* GIMakeFinalAnswerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GIMakeFinalAnswerViewController.m; sourceTree = "<group>"; };
+		FC58F9E92015BD4100018C4E /* GIQuestionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GIQuestionView.h; sourceTree = "<group>"; };
+		FC58F9EA2015BD4100018C4E /* GIQuestionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GIQuestionView.m; sourceTree = "<group>"; };
+		FC58F9EB2015BD4200018C4E /* GIQuestionAnswerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GIQuestionAnswerModel.m; sourceTree = "<group>"; };
+		FC58F9EC2015BD4200018C4E /* GIAnswersView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GIAnswersView.h; sourceTree = "<group>"; };
+		FC58F9ED2015BD4200018C4E /* GIAnswerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GIAnswerView.h; sourceTree = "<group>"; };
+		FC58F9EE2015BD4200018C4E /* GIMakeAnswerOneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GIMakeAnswerOneViewController.m; sourceTree = "<group>"; };
+		FC58F9EF2015BD4200018C4E /* GIFillInView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GIFillInView.h; sourceTree = "<group>"; };
+		FC58F9F02015BD4200018C4E /* GIResultsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GIResultsView.h; sourceTree = "<group>"; };
+		FC58F9F12015BD4300018C4E /* GIQuestionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GIQuestionController.h; sourceTree = "<group>"; };
+		FC58F9F22015BD4300018C4E /* GIQuestionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GIQuestionController.m; sourceTree = "<group>"; };
+		FC58F9F32015BD4300018C4E /* GIResultsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GIResultsView.m; sourceTree = "<group>"; };
+		FC58F9F42015BD4300018C4E /* GIMakeFinalAnswerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GIMakeFinalAnswerViewController.h; sourceTree = "<group>"; };
+		FC58F9F52015BD4300018C4E /* GIUserData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GIUserData.h; sourceTree = "<group>"; };
+		FCC89CD12015C0CA0040DF02 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,17 +72,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B697242692B4EA7A0D3B8B47 /* libPods-GavelIt.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		31815051E63D5FD1DE8BE862 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				179D53E7B33986A74D5F533D /* libPods-GavelIt.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DE4BE77BC9D3F696647DD942 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				322B1425410968B4A4D8E76D /* Pods-GavelIt.debug.xcconfig */,
+				DE403A9FF67C6F4FF5D42A3C /* Pods-GavelIt.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		FC58F9BB2015BA2300018C4E = {
 			isa = PBXGroup;
 			children = (
 				FC58F9C62015BA2300018C4E /* GavelIt */,
 				FC58F9C52015BA2300018C4E /* Products */,
+				DE4BE77BC9D3F696647DD942 /* Pods */,
+				31815051E63D5FD1DE8BE862 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -63,10 +122,33 @@
 				FC58F9CA2015BA2300018C4E /* ViewController.h */,
 				FC58F9CB2015BA2300018C4E /* ViewController.m */,
 				FC58F9CD2015BA2300018C4E /* Main.storyboard */,
+				FC58F9EC2015BD4200018C4E /* GIAnswersView.h */,
+				FC58F9E52015BD4100018C4E /* GIAnswersView.m */,
+				FC58F9ED2015BD4200018C4E /* GIAnswerView.h */,
+				FC58F9E12015BD4000018C4E /* GIAnswerView.m */,
+				FC58F9EF2015BD4200018C4E /* GIFillInView.h */,
+				FC58F9E72015BD4100018C4E /* GIFillInView.m */,
+				FC58F9E62015BD4100018C4E /* GIMakeAnswerOneViewController.h */,
+				FC58F9EE2015BD4200018C4E /* GIMakeAnswerOneViewController.m */,
+				FC58F9F42015BD4300018C4E /* GIMakeFinalAnswerViewController.h */,
+				FC58F9E82015BD4100018C4E /* GIMakeFinalAnswerViewController.m */,
+				FC58F9E22015BD4000018C4E /* GIMakeQuestionViewController.h */,
+				FC58F9E32015BD4100018C4E /* GIMakeQuestionViewController.m */,
+				FC58F9E42015BD4100018C4E /* GIQuestionAnswerModel.h */,
+				FC58F9EB2015BD4200018C4E /* GIQuestionAnswerModel.m */,
+				FC58F9F12015BD4300018C4E /* GIQuestionController.h */,
+				FC58F9F22015BD4300018C4E /* GIQuestionController.m */,
+				FC58F9E92015BD4100018C4E /* GIQuestionView.h */,
+				FC58F9EA2015BD4100018C4E /* GIQuestionView.m */,
+				FC58F9F02015BD4200018C4E /* GIResultsView.h */,
+				FCC89CD12015C0CA0040DF02 /* GoogleService-Info.plist */,
+				FC58F9F32015BD4300018C4E /* GIResultsView.m */,
+				FC58F9F52015BD4300018C4E /* GIUserData.h */,
 				FC58F9D02015BA2300018C4E /* Assets.xcassets */,
 				FC58F9D22015BA2300018C4E /* LaunchScreen.storyboard */,
 				FC58F9D52015BA2300018C4E /* Info.plist */,
 				FC58F9D62015BA2300018C4E /* main.m */,
+				FC58F9DF2015BD3600018C4E /* GIUserData.m */,
 			);
 			path = GavelIt;
 			sourceTree = "<group>";
@@ -78,9 +160,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FC58F9DA2015BA2300018C4E /* Build configuration list for PBXNativeTarget "GavelIt" */;
 			buildPhases = (
+				4BEF42BFAAC5E7F8F863A1C6 /* [CP] Check Pods Manifest.lock */,
 				FC58F9C02015BA2300018C4E /* Sources */,
 				FC58F9C12015BA2300018C4E /* Frameworks */,
 				FC58F9C22015BA2300018C4E /* Resources */,
+				BD3B79B48876EC8B184D1AC9 /* [CP] Embed Pods Frameworks */,
+				94D61B0A23F7A808C7238A25 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -130,6 +215,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FC58F9D42015BA2300018C4E /* LaunchScreen.storyboard in Resources */,
+				FCC89CD22015C0CB0040DF02 /* GoogleService-Info.plist in Resources */,
 				FC58F9D12015BA2300018C4E /* Assets.xcassets in Resources */,
 				FC58F9CF2015BA2300018C4E /* Main.storyboard in Resources */,
 			);
@@ -137,14 +223,76 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		4BEF42BFAAC5E7F8F863A1C6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-GavelIt-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		94D61B0A23F7A808C7238A25 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GavelIt/Pods-GavelIt-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BD3B79B48876EC8B184D1AC9 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GavelIt/Pods-GavelIt-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		FC58F9C02015BA2300018C4E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC58F9E02015BD3700018C4E /* GIUserData.m in Sources */,
+				FC58F9FC2015BD4400018C4E /* GIQuestionAnswerModel.m in Sources */,
+				FC58F9FA2015BD4400018C4E /* GIMakeFinalAnswerViewController.m in Sources */,
 				FC58F9CC2015BA2300018C4E /* ViewController.m in Sources */,
+				FC58F9F92015BD4400018C4E /* GIFillInView.m in Sources */,
+				FC58F9FE2015BD4400018C4E /* GIQuestionController.m in Sources */,
+				FC58F9FB2015BD4400018C4E /* GIQuestionView.m in Sources */,
 				FC58F9D72015BA2300018C4E /* main.m in Sources */,
+				FC58F9F62015BD4400018C4E /* GIAnswerView.m in Sources */,
+				FC58F9F72015BD4400018C4E /* GIMakeQuestionViewController.m in Sources */,
+				FC58F9FD2015BD4400018C4E /* GIMakeAnswerOneViewController.m in Sources */,
+				FC58F9FF2015BD4400018C4E /* GIResultsView.m in Sources */,
 				FC58F9C92015BA2300018C4E /* AppDelegate.m in Sources */,
+				FC58F9F82015BD4400018C4E /* GIAnswersView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,6 +424,7 @@
 		};
 		FC58F9DB2015BA2300018C4E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 322B1425410968B4A4D8E76D /* Pods-GavelIt.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -290,6 +439,7 @@
 		};
 		FC58F9DC2015BA2300018C4E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DE403A9FF67C6F4FF5D42A3C /* Pods-GavelIt.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

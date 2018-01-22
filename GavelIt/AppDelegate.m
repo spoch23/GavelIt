@@ -6,6 +6,7 @@
 //  Copyright © 2018 Steven Pochapin. All rights reserved.
 //
 
+@import Firebase;
 #import "AppDelegate.h"
 
 @interface AppDelegate ()
@@ -17,6 +18,13 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    [FIRApp configure];
+    [[FIRAuth auth]
+     signInAnonymouslyWithCompletion:^(FIRUser *_Nullable user, NSError *_Nullable error) {
+         if (error) {
+             NSLog(@"Error %@", error.localizedDescription);
+         }
+     }];
     return YES;
 }
 

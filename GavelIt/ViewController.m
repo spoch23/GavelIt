@@ -1,29 +1,35 @@
-//
-//  ViewController.m
-//  GavelIt
-//
-//  Created by Steven Pochapin on 1/21/18.
-//  Copyright © 2018 Steven Pochapin. All rights reserved.
-//
-
 #import "ViewController.h"
+#import "GIQuestionView.h"
+#import "GIMakeQuestionViewController.h"
+#import "GIQuestionController.h"
 
-@interface ViewController ()
+@interface ViewController ()<GIQuestionDelegate, GIQuestionDisplay>
 
 @end
 
 @implementation ViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+- (void)loadView {
+    GIQuestionAnswerModel *question = [[GIQuestionController questionController] nextQuestionQuestionDisplay:self];
+    self.view = [[GIQuestionView alloc] initWithQuestionAnswerModel:question];
+    ((GIQuestionView *)self.view).delegate = self;
+    self.navigationItem.hidesBackButton = YES;
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"+"
+                                                                              style:UIBarButtonItemStylePlain
+                                                                             target:self
+                                                                             action:@selector(makeNewQuestion)];
 }
 
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)makeNewQuestion {
+    [self.navigationController pushViewController:[[GIMakeQuestionViewController alloc] init] animated:YES];
 }
 
+- (void)nextQuestion {
+    [self.navigationController pushViewController:[[ViewController alloc] init] animated:YES];
+}
+
+- (void)receivedQuestion:(GIQuestionAnswerModel *)nextQuestion {
+    [(GIQuestionView *)self.view setQuestionAnswer:nextQuestion];
+}
 
 @end
