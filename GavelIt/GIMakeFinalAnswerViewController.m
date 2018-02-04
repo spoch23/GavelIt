@@ -1,12 +1,14 @@
 #import "GIMakeFinalAnswerViewController.h"
 
+@import Firebase;
+
 #import "ViewController.h"
 #import "GIFillInView.h"
 #import "GIQuestionAnswerModel.h"
 #import "GIUserData.h"
 
 @interface GIMakeFinalAnswerViewController ()<GIFillDelegate>
-
+@property (strong, nonatomic) FIRDatabaseReference *ref;
 @end
 
 @implementation GIMakeFinalAnswerViewController {
@@ -19,6 +21,7 @@
     if (self) {
         _questionText = question;
         _answerText = answerOne;
+        self.ref = [[FIRDatabase database] reference];
     }
     return self;
 }
@@ -29,26 +32,43 @@
 }
 
 - (void)nextTappedWithResult:(NSString *)text {
-//    AWSDynamoDBObjectMapper *dynamoDBObjectMapper = [AWSDynamoDBObjectMapper defaultDynamoDBObjectMapper];
-//    GIQuestionAnswerModel *qA = [[GIQuestionAnswerModel alloc] init];
-//    // We will need to change this to an actual Unique In the future but to get it up and runnign it should work.
-//    qA.UniqueId = [[NSUUID UUID] UUIDString];
-//    qA.TimeCreated = [NSNumber numberWithDouble:[NSDate timeIntervalSinceReferenceDate]];
-//    qA.Question = _questionText;
-//    qA.FirstAnswer = _answerText;
-//    qA.SecondAnswer = text;
-//    qA.VotestFirst = [NSNumber numberWithInteger:0];
-//    qA.VotestSecond = [NSNumber numberWithInteger:0];
-//    [[dynamoDBObjectMapper save:qA]
-//     continueWithBlock:^id(AWSTask *task) {
-//         if (task.error) {
-//             NSLog(@"The request failed. Error: [%@]", task.error);
-//         } else {
-//             //Do something with task.result or perform other operations.
-//         }
-//         return nil;
-//     }];
-//    [[GIUserData userData] addQuestionCreated:qA.UniqueId];
+    NSMutableDictionary *questionModel = [[NSMutableDictionary alloc] init];
+    questionModel[@"questionText"] = _questionText;
+    questionModel[@"answer1"] = _answerText;
+    questionModel[@"answer2"] = text;
+    questionModel[@"votes1"] = @(0);
+    questionModel[@"votes2"] = @(0);
+    NSString *uniqueId = [[[self.ref child:@"questions"] childByAutoId] key];
+    [[[self.ref child:@"questions"] child:uniqueId] setValue:questionModel];
+    [[[self.ref child:@"users"] child:[FIRAuth auth].currentUser.uid]
+     runTransactionBlock:^FIRTransactionResult * _Nonnull(FIRMutableData * _Nonnull currentData) {
+        NSMutableDictionary *post = currentData.value;
+        if (!post || [post isEqual:[NSNull null]]) {
+            post = [[NSMutableDictionary alloc] init];
+        }
+        
+        NSMutableArray *createdQuestions = post[@"created"];
+        if (!createdQuestions) {
+            createdQuestions = [[NSMutableArray alloc] initWithCapacity:1];
+        }
+         [createdQuestions addObject:uniqueId];
+        post[@"created"] = createdQuestions;
+        
+        // Set value and report transaction success
+        currentData.value = post;
+        return [FIRTransactionResult successWithValue:currentData];
+     }
+     andCompletionBlock:^(NSError * _Nullable error,
+                        BOOL committed,
+                        FIRDataSnapshot * _Nullable snapshot) {
+        // Transaction completed
+        if (error) {
+           NSLog(@"%@", error.localizedDescription);
+        }
+     }];
+    
+    
+    //    [[GIUserData userData] addQuestionCreated:qA.UniqueId];
     
     [self.navigationController pushViewController:[[ViewController alloc] init] animated:YES];
 }

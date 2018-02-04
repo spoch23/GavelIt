@@ -1,3 +1,4 @@
+@import Firebase;
 #import "GIQuestionView.h"
 #import "GIAnswersView.h"
 #import "GIResultsView.h"
@@ -17,12 +18,14 @@
     BOOL _animating;
     GIQuestionAnswerModel *_qA;
     UIActivityIndicatorView *_spinner;
+    FIRDatabaseReference *_ref;
 }
 
 - (instancetype)initWithQuestionAnswerModel:(GIQuestionAnswerModel *)qA {
     self = [super init];
     if (self) {
         self.backgroundColor = [UIColor whiteColor];
+        _ref = [[FIRDatabase database] reference];
         if (qA) {
             _qA = qA;
             _question = qA.Question;
@@ -95,18 +98,69 @@
         val2++;
         _qA.VotestSecond = [NSNumber numberWithInteger:val2];
     }
-//    AWSDynamoDBObjectMapper *dynamoDBObjectMapper = [AWSDynamoDBObjectMapper defaultDynamoDBObjectMapper];
-//    [[dynamoDBObjectMapper save:_qA]
-//     continueWithBlock:^id(AWSTask *task) {
-//         if (task.error) {
-//             NSLog(@"The request failed. Error: [%@]", task.error);
-//         } else {
-//             //Do something with task.result or perform other operations.
-//         }
-//         return nil;
-//     }];
-//    [[GIUserData userData] addQuestionAnswered:_qA.UniqueId vote:answerNumber];
-    
+    [[[_ref child:@"questions"] child:_qA.UniqueId]
+     runTransactionBlock:^FIRTransactionResult * _Nonnull(FIRMutableData * _Nonnull currentData) {
+         NSMutableDictionary *post = currentData.value;
+         if (!post || [post isEqual:[NSNull null]]) {
+             return [FIRTransactionResult successWithValue:currentData];
+         }
+         
+         if (answerNumber == 1) {
+             NSNumber *votes1 = post[@"votes1"];
+             uint calculatedVotes = [votes1 unsignedIntValue] + 1;
+             post[@"votes1"] = @(calculatedVotes);
+         } else {
+             NSNumber *votes2 = post[@"votes2"];
+             uint calculatedVotes = [votes2 unsignedIntValue] + 1;
+             post[@"votes2"] = @(calculatedVotes);
+         }
+         
+         // Set value and report transaction success
+         currentData.value = post;
+         return [FIRTransactionResult successWithValue:currentData];
+     }
+     andCompletionBlock:^(NSError * _Nullable error,
+                          BOOL committed,
+                          FIRDataSnapshot * _Nullable snapshot) {
+         // Transaction completed
+         if (error) {
+             NSLog(@"%@", error.localizedDescription);
+         }
+     }];
+    [[[_ref child:@"users"] child:[FIRAuth auth].currentUser.uid]
+     runTransactionBlock:^FIRTransactionResult * _Nonnull(FIRMutableData * _Nonnull currentData) {
+         NSMutableDictionary *post = currentData.value;
+         if (!post || [post isEqual:[NSNull null]]) {
+             post = [[NSMutableDictionary alloc] init];
+         }
+         
+         NSMutableArray *votedQuestions = post[@"voted"];
+         if (!votedQuestions) {
+             votedQuestions = [[NSMutableArray alloc] initWithCapacity:1];
+         }
+         NSMutableDictionary *questionVotedOn = [[NSMutableDictionary alloc] init];
+         questionVotedOn[@"QuestionId"] = _qA.UniqueId;
+         if (answerNumber == 1) {
+             questionVotedOn[@"Voted"] = @"first";
+         } else {
+             questionVotedOn[@"Voted"] = @"second";
+         }
+         [votedQuestions addObject:questionVotedOn];
+         post[@"voted"] = votedQuestions;
+         
+         // Set value and report transaction success
+         currentData.value = post;
+         return [FIRTransactionResult successWithValue:currentData];
+     }
+     andCompletionBlock:^(NSError * _Nullable error,
+                          BOOL committed,
+                          FIRDataSnapshot * _Nullable snapshot) {
+         // Transaction completed
+         if (error) {
+             NSLog(@"%@", error.localizedDescription);
+         }
+     }];
+
     _resultView = [[GIResultsView alloc] initWithCurrentResults:val1 answer2:val2];
     _resultView.delegate = self;
     [self addSubview:_resultView];

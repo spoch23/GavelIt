@@ -1,10 +1,11 @@
+@import Firebase;
 #import "GIQuestionController.h"
-
 
 @implementation GIQuestionController {
     NSMutableArray<GIQuestionAnswerModel *> *_questions;
     NSObject<GIQuestionDisplay> *_questionDisplayer;
     BOOL _currentlyFetching;
+    FIRDatabaseReference *_ref;
 }
 
 + (instancetype)questionController {
@@ -20,6 +21,7 @@
     self = [super init];
     if (self) {
         _questions = [[NSMutableArray alloc] init];
+        _ref = [[FIRDatabase database] reference];
         [self loadMoreQuestions];
     }
     return self;
@@ -35,39 +37,42 @@
         if (!_currentlyFetching) {
             [self loadMoreQuestions];
         }
-        GIQuestionAnswerModel *question = [[GIQuestionAnswerModel alloc] init];
-        question.UniqueId = @"123";
-        question.TimeCreated = @(1);
-        question.Question = @"Should I play assasins creed?";
-        question.FirstAnswer = @"Yes, it is your game. Go play.";
-        question.SecondAnswer = @"No. Get a life you loser this is actually work.";
-        question.VotestFirst = @(50);
-        question.VotestSecond = @(50);
-        return question;
+        return nil;
     }
 }
 
 - (void)loadMoreQuestions {
     _currentlyFetching = YES;
-//    AWSDynamoDBObjectMapper *dynamoDBObjectMapper = [AWSDynamoDBObjectMapper defaultDynamoDBObjectMapper];
-//    AWSDynamoDBScanExpression *scanExpression = [AWSDynamoDBScanExpression new];
-//
-//    [[dynamoDBObjectMapper scan:[GIQuestionAnswerModel class]
-//                 expression:scanExpression]
-//    continueWithBlock:^id(AWSTask *task) {
-//        _currentlyFetching = NO;
-//         if (task.error) {
-//             NSLog(@"The request failed. Error: [%@]", task.error);
-//         } else {
-//             AWSDynamoDBPaginatedOutput *paginatedOutput = task.result;
-//             _questions = [NSMutableArray arrayWithArray:paginatedOutput.items];
-//             dispatch_async(dispatch_get_main_queue(), ^{
-//                 [_questionDisplayer receivedQuestion:[_questions firstObject]];
-//                 [_questions removeObjectAtIndex:0];
-//             });
-//         }
-//         return nil;
-//     }];
+    [[_ref child:@"questions"]  observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+        NSDictionary *postDict = snapshot.value;
+        for (int i = 0; i < [postDict allKeys].count; i++) {
+            NSString *currentKey = [postDict allKeys][i];
+            NSMutableDictionary *questionData = postDict[currentKey];
+            GIQuestionAnswerModel *question = [[GIQuestionAnswerModel alloc] init];
+            question.UniqueId = currentKey;
+            question.Question = questionData[@"questionText"];
+            question.FirstAnswer = questionData[@"answer1"];
+            question.SecondAnswer = questionData[@"answer2"];
+            question.VotestFirst = questionData[@"votes1"];
+            question.VotestSecond = questionData[@"votes2"];
+            BOOL updatedQuestion = NO;
+            for (int i = 0; i < _questions.count; i++) {
+                if ([_questions[i].UniqueId isEqualToString:question.UniqueId]) {
+                    _questions[i] = question;
+                    updatedQuestion = YES;
+                    break;
+                }
+            }
+            if (!updatedQuestion) {
+                [_questions addObject:question];
+            }
+        }
+        _currentlyFetching = NO;
+        dispatch_async(dispatch_get_main_queue(), ^{
+             [_questionDisplayer receivedQuestion:[_questions firstObject]];
+             [_questions removeObjectAtIndex:0];
+         });
+    }];
 }
 
 @end

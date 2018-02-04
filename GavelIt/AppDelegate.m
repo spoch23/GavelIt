@@ -8,6 +8,7 @@
 
 @import Firebase;
 #import "AppDelegate.h"
+#import "ViewController.h"
 
 @interface AppDelegate ()
 
@@ -25,6 +26,14 @@
              NSLog(@"Error %@", error.localizedDescription);
          }
      }];
+    ViewController *vc = [[ViewController alloc] init];
+    UINavigationController *navigationController =
+            [[UINavigationController alloc] initWithRootViewController:vc];
+    // Instantiate the window
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.rootViewController = navigationController;
+    // Show the window
+    [self.window makeKeyAndVisible];
     return YES;
 }
 
