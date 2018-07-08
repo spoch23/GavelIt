@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B697242692B4EA7A0D3B8B47 /* libPods-GavelIt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 179D53E7B33986A74D5F533D /* libPods-GavelIt.a */; };
+		FC5332732027954600756F5B /* GIUserStatsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC5332722027954600756F5B /* GIUserStatsTableViewController.m */; };
 		FC58F9C92015BA2300018C4E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FC58F9C82015BA2300018C4E /* AppDelegate.m */; };
 		FC58F9CC2015BA2300018C4E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC58F9CB2015BA2300018C4E /* ViewController.m */; };
 		FC58F9CF2015BA2300018C4E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC58F9CD2015BA2300018C4E /* Main.storyboard */; };
@@ -32,6 +33,8 @@
 		179D53E7B33986A74D5F533D /* libPods-GavelIt.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GavelIt.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		322B1425410968B4A4D8E76D /* Pods-GavelIt.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GavelIt.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GavelIt/Pods-GavelIt.debug.xcconfig"; sourceTree = "<group>"; };
 		DE403A9FF67C6F4FF5D42A3C /* Pods-GavelIt.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GavelIt.release.xcconfig"; path = "Pods/Target Support Files/Pods-GavelIt/Pods-GavelIt.release.xcconfig"; sourceTree = "<group>"; };
+		FC5332712027954600756F5B /* GIUserStatsTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GIUserStatsTableViewController.h; sourceTree = "<group>"; };
+		FC5332722027954600756F5B /* GIUserStatsTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GIUserStatsTableViewController.m; sourceTree = "<group>"; };
 		FC58F9C42015BA2300018C4E /* GavelIt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GavelIt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC58F9C72015BA2300018C4E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		FC58F9C82015BA2300018C4E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -144,6 +147,8 @@
 				FCC89CD12015C0CA0040DF02 /* GoogleService-Info.plist */,
 				FC58F9F32015BD4300018C4E /* GIResultsView.m */,
 				FC58F9F52015BD4300018C4E /* GIUserData.h */,
+				FC5332712027954600756F5B /* GIUserStatsTableViewController.h */,
+				FC5332722027954600756F5B /* GIUserStatsTableViewController.m */,
 				FC58F9D02015BA2300018C4E /* Assets.xcassets */,
 				FC58F9D22015BA2300018C4E /* LaunchScreen.storyboard */,
 				FC58F9D52015BA2300018C4E /* Info.plist */,
@@ -286,6 +291,7 @@
 				FC58F9F92015BD4400018C4E /* GIFillInView.m in Sources */,
 				FC58F9FE2015BD4400018C4E /* GIQuestionController.m in Sources */,
 				FC58F9FB2015BD4400018C4E /* GIQuestionView.m in Sources */,
+				FC5332732027954600756F5B /* GIUserStatsTableViewController.m in Sources */,
 				FC58F9D72015BA2300018C4E /* main.m in Sources */,
 				FC58F9F62015BD4400018C4E /* GIAnswerView.m in Sources */,
 				FC58F9F72015BD4400018C4E /* GIMakeQuestionViewController.m in Sources */,

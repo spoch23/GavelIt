@@ -5,6 +5,7 @@
     NSMutableArray<GIQuestionAnswerModel *> *_questions;
     NSObject<GIQuestionDisplay> *_questionDisplayer;
     BOOL _currentlyFetching;
+    BOOL _fetchingItems;
     FIRDatabaseReference *_ref;
 }
 
@@ -43,7 +44,8 @@
 
 - (void)loadMoreQuestions {
     _currentlyFetching = YES;
-    [[_ref child:@"questions"]  observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+    [[_ref child:@"questions"]  observeSingleEventOfType:FIRDataEventTypeValue
+                                               withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
         NSDictionary *postDict = snapshot.value;
         for (int i = 0; i < [postDict allKeys].count; i++) {
             NSString *currentKey = [postDict allKeys][i];
@@ -71,8 +73,38 @@
         dispatch_async(dispatch_get_main_queue(), ^{
              [_questionDisplayer receivedQuestion:[_questions firstObject]];
              [_questions removeObjectAtIndex:0];
+            [self listenForQuestions];
          });
     }];
+}
+
+- (void)listenForQuestions {
+    if (!_fetchingItems) {
+        _fetchingItems = YES;
+        [[_ref child:@"questions"]  observeEventType:FIRDataEventTypeChildAdded withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+            NSDictionary *questionData = snapshot.value;
+            NSString *currentKey = snapshot.key;
+            GIQuestionAnswerModel *question = [[GIQuestionAnswerModel alloc] init];
+            question.UniqueId = currentKey;
+            question.Question = questionData[@"questionText"];
+            question.FirstAnswer = questionData[@"answer1"];
+            question.SecondAnswer = questionData[@"answer2"];
+            question.VotestFirst = questionData[@"votes1"];
+            question.VotestSecond = questionData[@"votes2"];
+            BOOL updatedQuestion = NO;
+            for (int i = 0; i < _questions.count; i++) {
+                if ([_questions[i].UniqueId isEqualToString:question.UniqueId]) {
+                    _questions[i] = question;
+                    updatedQuestion = YES;
+                    break;
+                }
+            }
+            if (!updatedQuestion) {
+                [_questions addObject:question];
+            }
+            _currentlyFetching = NO;
+        }];
+    }
 }
 
 @end

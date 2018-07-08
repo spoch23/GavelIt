@@ -6,6 +6,8 @@
 
 - (void)nextQuestion;
 
+- (void)shareTappedWithQuestionAnswerModel:(GIQuestionAnswerModel *)qA;
+
 @end
 
 @interface GIQuestionView : UIView

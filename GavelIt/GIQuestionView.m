@@ -19,6 +19,7 @@
     GIQuestionAnswerModel *_qA;
     UIActivityIndicatorView *_spinner;
     FIRDatabaseReference *_ref;
+    UIButton *_shareButtton;
 }
 
 - (instancetype)initWithQuestionAnswerModel:(GIQuestionAnswerModel *)qA {
@@ -38,6 +39,13 @@
             [_questionHolder addSubview:_questionLabel];
             _answersView = [[GIAnswersView alloc] initWithAnswer1:_a1 answer2:_a2 delegate:self];
             [self addSubview:_answersView];
+            _shareButtton = [UIButton buttonWithType:UIButtonTypeCustom];
+            [_shareButtton setTitle:@"Share" forState:UIControlStateNormal];
+            [_shareButtton addTarget:self
+                              action:@selector(share)
+                    forControlEvents:UIControlEventTouchUpInside];
+            [_shareButtton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+            [self addSubview:_shareButtton];
         }
     }
     return self;
@@ -56,6 +64,13 @@
     self.backgroundColor = [UIColor whiteColor];
     _answersView = [[GIAnswersView alloc] initWithAnswer1:_a1 answer2:_a2 delegate:self];
     [self addSubview:_answersView];
+    _shareButtton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [_shareButtton setTitle:@"Share" forState:UIControlStateNormal];
+    [_shareButtton addTarget:self
+                      action:@selector(share)
+            forControlEvents:UIControlEventTouchUpInside];
+    [_shareButtton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [self addSubview:_shareButtton];
 }
 
 - (void)layoutSubviews {
@@ -80,6 +95,8 @@
         if (!_animating) {
             _questionLabel.frame = CGRectMake((_questionHolder.frame.size.width - size.width) / 2, (_questionHolder.frame.size.height - size.height) / 2, size.width, size.height);
             _answersView.frame = CGRectMake(20, _questionHolder.frame.size.height + _questionHolder.frame.origin.y + 40, self.frame.size.width - 40, 250);
+            [_shareButtton sizeToFit];
+            _shareButtton.frame = CGRectMake((self.frame.size.width - _shareButtton.frame.size.width) / 2, _answersView.frame.size.height + _answersView.frame.origin.y + 20, _shareButtton.frame.size.width, _shareButtton.frame.size.height);
         }
     }
 }
@@ -184,6 +201,10 @@
         [_answersView removeFromSuperview];
         [_resultView animateResults];
     }];
+}
+
+- (void)share {
+    [self.delegate shareTappedWithQuestionAnswerModel:_qA];
 }
 
 @end
